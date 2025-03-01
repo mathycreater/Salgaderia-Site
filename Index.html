@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardápio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            font-size: 24px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .menu-item {
+            width: 90%;
+            max-width: 300px;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .menu-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .quantity-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .quantity-controls button {
+            padding: 5px 10px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 0 10px; /* Adicionando a margem para afastar os botões */
+        }
+        #pedido, #total {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        #enviar, .modal button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+        }
+        #enviar {
+            background-color: #25d366;
+            color: white;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: left;
+            position: relative;
+        }
+        .modal input {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+        .modal .btn-whatsapp {
+            background-color: #25d366;
+            color: white;
+        }
+        .modal .btn-voltar {
+            background-color: white;
+            color: black;
+            border: 1px solid #ccc;
+        }
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-bottom: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>Salgaderia Graça</div>
+        <div>📞 (99) 99999-9999</div>
+    </header>
+    <div class="container">
+        <div class="menu-item">
+            <img src="https://via.placeholder.com/100" alt="100 Salgados (20g)">
+            100 Salgados (20g) - R$50,00
+            <div class="quantity-controls">
+                <button onclick="alterarQuantidade('100 Salgados (20g)', -1)">-</button>
+                <span id="quantidade-100 Salgados (20g)">0</span>
+                <button onclick="alterarQuantidade('100 Salgados (20g)', 1)">+</button>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="https://via.placeholder.com/100" alt="100 Salgados (20g) Congelados">
+            100 Salgados (20g) Congelados - R$45,00
+            <div class="quantity-controls">
+                <button onclick="alterarQuantidade('100 Salgados (20g) Congelados', -1)">-</button>
+                <span id="quantidade-100 Salgados (20g) Congelados">0</span>
+                <button onclick="alterarQuantidade('100 Salgados (20g) Congelados', 1)">+</button>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="https://via.placeholder.com/100" alt="100 Churros (20g)">
+            100 Churros (20g) - R$80,00
+            <div class="quantity-controls">
+                <button onclick="alterarQuantidade('100 Churros (20g)', -1)">-</button>
+                <span id="quantidade-100 Churros (20g)">0</span>
+                <button onclick="alterarQuantidade('100 Churros (20g)', 1)">+</button>
+            </div>
+        </div>
+        <div id="pedido">Pedido: Nenhum item selecionado</div>
+        <div id="total">Total: R$0,00</div>
+        <button id="enviar" onclick="abrirFormulario()">Finalizar Pedido</button>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h2>Finalizar Pedido</h2>
+            <div id="error-message" class="error-message">Preencha todos os campos antes de enviar o pedido.</div>
+            <input type="text" id="nome" placeholder="Seu Nome">
+            <input type="text" id="endereco" placeholder="Endereço">
+            <input type="text" id="numero" placeholder="Número">
+            <input type="text" id="bairro" placeholder="Bairro">
+            <button class="btn-whatsapp" onclick="enviarPedido()">Enviar Pedido via WhatsApp</button>
+            <button class="btn-voltar" onclick="fecharFormulario()">Voltar</button>
+        </div>
+    </div>
+
+    <script>
+        let pedido = [];
+        let total = 0;
+
+        function alterarQuantidade(item, delta) {
+            let index = pedido.findIndex(p => p.nome === item);
+            if (index === -1) {
+                if (delta > 0) {
+                    pedido.push({ nome: item, preco: getPreco(item), quantidade: 1 });
+                }
+            } else {
+                if (pedido[index].quantidade + delta >= 0 && pedido[index].quantidade + delta <= 10) {
+                    pedido[index].quantidade += delta;
+                }
+            }
+            atualizarPedido();
+        }
+
+        function getPreco(item) {
+            switch (item) {
+                case '100 Salgados (20g)': return 50.00;
+                case '100 Salgados (20g) Congelados': return 45.00;
+                case '100 Churros (20g)': return 80.00;
+                default: return 0;
+            }
+        }
+
+        function atualizarPedido() {
+            let nomes = pedido
+                .filter(p => p.quantidade > 0) // Filtra itens com quantidade > 0
+                .map(p => `${p.nome} (${p.quantidade}x)`); // Exibe a quantidade ao lado do nome
+            total = pedido.reduce((acc, p) => acc + p.preco * p.quantidade, 0);
+            document.getElementById('pedido').innerText = nomes.length > 0 
+                ? 'Pedido: ' + nomes.join(' + ') 
+                : 'Pedido: Nenhum item selecionado';
+            document.getElementById('total').innerText = `Total: R$${total.toFixed(2)}`;
+
+            pedido.forEach(p => {
+                document.getElementById(`quantidade-${p.nome}`).innerText = p.quantidade;
+            });
+        }
+
+        function abrirFormulario() {
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        function fecharFormulario() {
+            document.getElementById('modal').style.display = 'none';
+            document.getElementById('error-message').style.display = 'none';
+        }
+
+        function enviarPedido() {
+            let nome = document.getElementById('nome').value;
+            let endereco = document.getElementById('endereco').value;
+            let numero = document.getElementById('numero').value;
+            let bairro = document.getElementById('bairro').value;
+            let errorMessage = document.getElementById('error-message');
+            
+            if (!nome || !endereco || !numero || !bairro) {
+                errorMessage.style.display = 'block';
+                return;
+            }
+            
+            errorMessage.style.display = 'none';
+            let mensagem = encodeURIComponent(`Nome: ${nome}\nEndereço: ${endereco}, Nº ${numero}, Bairro: ${bairro}\nPedido: ${pedido.filter(p => p.quantidade > 0).map(p => `${p.nome} (${p.quantidade}x)`).join(' + ')}\nTotal: R$${total.toFixed(2)}`);
+            let url = `https://api.whatsapp.com/send?phone=+55(19)99006-0643&text=${mensagem}`;
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
