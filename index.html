@@ -302,22 +302,26 @@
         }
 
         function enviarPedido() {
-            let nome = document.getElementById('nome').value;
-            let endereco = document.getElementById('endereco').value;
-            let numero = document.getElementById('numero').value;
-            let bairro = document.getElementById('bairro').value;
-            let errorMessage = document.getElementById('error-message');
-            
-            if (!nome || !endereco || !numero || !bairro) {
-                errorMessage.style.display = 'block';
-                return;
-            }
-            
-            errorMessage.style.display = 'none';
-            let mensagem = encodeURIComponent(`Nome: ${nome}\nEndereço: ${endereco}, Nº ${numero}, Bairro: ${bairro}\nPedido: ${pedido.filter(p => p.quantidade > 0).map(p => `${p.nome} (${p.quantidade}x)`).join(' + ')}\nTotal: R$${total.toFixed(2)}`);
-            let url = `https://api.whatsapp.com/send?phone=+55(19)99006-0643&text=${mensagem}`;
-            window.open(url, '_blank');
-        }
+    let nome = document.getElementById('nome').value;
+    let endereco = document.getElementById('endereco').value;
+    let numero = document.getElementById('numero').value;
+    let bairro = document.getElementById('bairro').value;
+    let errorMessage = document.getElementById('error-message');
+    
+    if (!nome || !endereco || !numero || !bairro) {
+        errorMessage.style.display = 'block';
+        return;
+    }
+    
+    errorMessage.style.display = 'none';
+    
+    // Adiciona o tipo de entrega (Retirada ou Entrega) à mensagem
+    let entregaInfo = tipoEntrega ? `Tipo de entrega: ${tipoEntrega}` : 'Tipo de entrega: Não selecionado';
+    
+    let mensagem = encodeURIComponent(`Nome: ${nome}\nEndereço: ${endereco}, Nº ${numero}, Bairro: ${bairro}, \nPedido: ${pedido.filter(p => p.quantidade > 0).map(p => `${p.nome} (${p.quantidade}x)`).join(' + ')}\nTotal: R$${total.toFixed(2)} \n${entregaInfo}`);
+    let url = `https://api.whatsapp.com/send?phone=+55(19)99006-0643&text=${mensagem}`;
+    window.open(url, '_blank');
+}
 
         function selecionarRetirada() {
             tipoEntrega = 'Retirada';
