@@ -10,10 +10,10 @@
             text-align: center;
             padding: 20px;
             margin: 0;
-            background-color: #f4f4f4;
+            background-color: #f7f2e0; /* Cor suave, semelhante a um fundo de salgaderia */
         }
         header {
-            background-color: #333;
+            background-color: #d35400; /* Laranja, associado a alimentos */
             color: white;
             padding: 15px;
             font-size: 24px;
@@ -25,25 +25,40 @@
             padding: 20px;
         }
         .menu-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width: 90%;
-            max-width: 300px;
+            max-width: 600px;
             margin: 10px;
-            padding: 10px;
-            border: 1px solid #ccc;
+            padding: 15px;
+            border: 1px solid #ddd;
             background-color: #fff;
-            text-align: center;
+            text-align: center; /* Centraliza o texto */
             border-radius: 5px;
             cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
         .menu-item img {
             width: 100px;
             height: 100px;
             object-fit: cover;
-            margin-bottom: 10px;
+            margin-right: 15px;
             border-radius: 5px;
+        }
+        .menu-item .info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center; /* Centraliza o texto */
+            width: 100%;
+        }
+        .menu-item .info span {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .menu-item .info p {
+            font-size: 14px;
+            margin: 5px 0;
         }
         .quantity-controls {
             display: flex;
@@ -55,24 +70,35 @@
             padding: 5px 10px;
             font-size: 16px;
             cursor: pointer;
-            margin: 0 10px; /* Adicionando a margem para afastar os botões */
+            margin: 0 10px;
+            background-color: #f39c12; /* Cor amarela, que combina com salgados */
+            border: none;
+            color: white;
+            border-radius: 5px;
+        }
+        .quantity-controls button:hover {
+            background-color: #e67e22; /* Efeito de hover mais forte */
+        }
+        .quantity-controls span {
+            font-size: 16px;
         }
         #pedido, #total {
             margin-top: 20px;
             font-size: 18px;
             font-weight: bold;
         }
-        #enviar, .modal button {
-            margin-top: 10px;
+        #enviar {
+            margin-top: 20px;
             padding: 10px 20px;
             font-size: 18px;
             border-radius: 5px;
             cursor: pointer;
+            background-color: #27ae60; /* Cor verde, dando destaque */
+            color: white;
             border: none;
         }
-        #enviar {
-            background-color: #25d366;
-            color: white;
+        #enviar:hover {
+            background-color: #2ecc71;
         }
         .modal {
             display: none;
@@ -96,13 +122,15 @@
             width: 100%;
             margin-bottom: 10px;
             padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
         }
         .modal .btn-whatsapp {
             background-color: #25d366;
             color: white;
         }
         .modal .btn-voltar {
-            background-color: white;
+            background-color: #ecf0f1;
             color: black;
             border: 1px solid #ccc;
         }
@@ -112,43 +140,85 @@
             margin-bottom: 10px;
             display: none;
         }
+        .delivery-button, .pickup-button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 150px;
+        }
+        .delivery-button {
+            background-color: #e74c3c; /* Cor vermelha para entrega */
+            color: white;
+        }
+        .pickup-button {
+            background-color: #f39c12; /* Cor laranja para retirada */
+            color: white;
+        }
+        .selected {
+            border: 2px solid #27ae60; /* Cor verde para indicar o botão selecionado */
+            background-color: #2ecc71;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Espaço entre os botões */
+        }
     </style>
 </head>
 <body>
     <header>
         <div>Salgaderia Graça</div>
-        <div>📞 (99) 99999-9999</div>
+        <div>📞 (19) 99006-0643</div>
     </header>
     <div class="container">
         <div class="menu-item">
-            <img src="https://via.placeholder.com/100" alt="100 Salgados (20g)">
-            100 Salgados (20g) - R$50,00
-            <div class="quantity-controls">
-                <button onclick="alterarQuantidade('100 Salgados (20g)', -1)">-</button>
-                <span id="quantidade-100 Salgados (20g)">0</span>
-                <button onclick="alterarQuantidade('100 Salgados (20g)', 1)">+</button>
+            <img src="salgadinho.jpg" alt="100 Salgados (20g)">
+            <div class="info">
+                <span>100 Salgados (20g) - R$50,00</span>
+                <p>Deliciosos salgados fresquinhos para sua festa!</p>
+                <div class="quantity-controls">
+                    <button onclick="alterarQuantidade('100 Salgados (20g)', -1)">-</button>
+                    <span id="quantidade-100 Salgados (20g)">0</span>
+                    <button onclick="alterarQuantidade('100 Salgados (20g)', 1)">+</button>
+                </div>
             </div>
         </div>
         <div class="menu-item">
-            <img src="https://via.placeholder.com/100" alt="100 Salgados (20g) Congelados">
-            100 Salgados (20g) Congelados - R$45,00
-            <div class="quantity-controls">
-                <button onclick="alterarQuantidade('100 Salgados (20g) Congelados', -1)">-</button>
-                <span id="quantidade-100 Salgados (20g) Congelados">0</span>
-                <button onclick="alterarQuantidade('100 Salgados (20g) Congelados', 1)">+</button>
+            <img src="salgadinho.jpg" alt="100 Salgados (20g) Congelados">
+            <div class="info">
+                <span>100 Salgados (20g) Congelados - R$45,00</span>
+                <p>Salgados prontos para congelar e usar quando necessário.</p>
+                <div class="quantity-controls">
+                    <button onclick="alterarQuantidade('100 Salgados (20g) Congelados', -1)">-</button>
+                    <span id="quantidade-100 Salgados (20g) Congelados">0</span>
+                    <button onclick="alterarQuantidade('100 Salgados (20g) Congelados', 1)">+</button>
+                </div>
             </div>
         </div>
         <div class="menu-item">
-            <img src="https://via.placeholder.com/100" alt="100 Churros (20g)">
-            100 Churros (20g) - R$80,00
-            <div class="quantity-controls">
-                <button onclick="alterarQuantidade('100 Churros (20g)', -1)">-</button>
-                <span id="quantidade-100 Churros (20g)">0</span>
-                <button onclick="alterarQuantidade('100 Churros (20g)', 1)">+</button>
+            <img src="churros.jpg" alt="100 Churros (20g)">
+            <div class="info">
+                <span>100 Churros (20g) - R$80,00</span>
+                <p>Churros crocantes, com recheio delicioso de doce de leite.</p>
+                <div class="quantity-controls">
+                    <button onclick="alterarQuantidade('100 Churros (20g)', -1)">-</button>
+                    <span id="quantidade-100 Churros (20g)">0</span>
+                    <button onclick="alterarQuantidade('100 Churros (20g)', 1)">+</button>
+                </div>
             </div>
         </div>
         <div id="pedido">Pedido: Nenhum item selecionado</div>
         <div id="total">Total: R$0,00</div>
+
+        <!-- Botões para Retirada e Entrega -->
+        <div class="button-container">
+            <button id="retirada" class="pickup-button" onclick="selecionarRetirada()">Retirada</button>
+            <button id="entrega" class="delivery-button" onclick="selecionarEntrega()">Entrega R$5,00</button>
+        </div>
+
         <button id="enviar" onclick="abrirFormulario()">Finalizar Pedido</button>
     </div>
 
@@ -160,7 +230,16 @@
             <input type="text" id="endereco" placeholder="Endereço">
             <input type="text" id="numero" placeholder="Número">
             <input type="text" id="bairro" placeholder="Bairro">
-            <button class="btn-whatsapp" onclick="enviarPedido()">Enviar Pedido via WhatsApp</button>
+            <button margin-top: 20px;
+            padding: 15px 30px; 
+            font-size: 22px; 
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #27ae60; 
+            color: white;
+            border: none;
+            width: 250px; 
+            class="btn-whatsapp" onclick="enviarPedido()">Enviar Pedido via WhatsApp</button>
             <button class="btn-voltar" onclick="fecharFormulario()">Voltar</button>
         </div>
     </div>
@@ -168,6 +247,7 @@
     <script>
         let pedido = [];
         let total = 0;
+        let tipoEntrega = ""; // Armazenando o tipo de entrega (Retirada ou Entrega)
 
         function alterarQuantidade(item, delta) {
             let index = pedido.findIndex(p => p.nome === item);
@@ -197,6 +277,11 @@
                 .filter(p => p.quantidade > 0) // Filtra itens com quantidade > 0
                 .map(p => `${p.nome} (${p.quantidade}x)`); // Exibe a quantidade ao lado do nome
             total = pedido.reduce((acc, p) => acc + p.preco * p.quantidade, 0);
+            if (tipoEntrega === 'Entrega') {
+                total += 5; // Adicionando o valor da entrega
+                nomes.push("Entrega");
+            }
+
             document.getElementById('pedido').innerText = nomes.length > 0 
                 ? 'Pedido: ' + nomes.join(' + ') 
                 : 'Pedido: Nenhum item selecionado';
@@ -232,6 +317,20 @@
             let mensagem = encodeURIComponent(`Nome: ${nome}\nEndereço: ${endereco}, Nº ${numero}, Bairro: ${bairro}\nPedido: ${pedido.filter(p => p.quantidade > 0).map(p => `${p.nome} (${p.quantidade}x)`).join(' + ')}\nTotal: R$${total.toFixed(2)}`);
             let url = `https://api.whatsapp.com/send?phone=+55(19)99006-0643&text=${mensagem}`;
             window.open(url, '_blank');
+        }
+
+        function selecionarRetirada() {
+            tipoEntrega = 'Retirada';
+            document.getElementById('retirada').classList.add('selected');
+            document.getElementById('entrega').classList.remove('selected');
+            atualizarPedido();
+        }
+
+        function selecionarEntrega() {
+            tipoEntrega = 'Entrega';
+            document.getElementById('entrega').classList.add('selected');
+            document.getElementById('retirada').classList.remove('selected');
+            atualizarPedido();
         }
     </script>
 </body>
