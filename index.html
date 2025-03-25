@@ -166,6 +166,15 @@
             justify-content: center;
             gap: 20px; /* Espaço entre os botões */
         }
+        .titulo {
+            font-size: 40px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 10vh;
+            margin-bottom: 10vh;
+            font-family: sans-serif;
+        }
+
     </style>
 </head>
 <body>
@@ -174,42 +183,154 @@
         <div>📞 (19) 99006-0643</div>
     </header>
     <div class="container">
+        <div class="titulo">Salgadinhos - 10 unidades</div>
         <div class="menu-item">
-            <img src="salgadinho.jpg" alt="100 Salgados (20g)">
+            <img src="salgadinho.jpg" alt="10 Coxinhas de frango (20 g)">
             <div class="info">
-                <span>100 Salgados (20g) - R$50,00</span>
-                <p>Deliciosos salgados fresquinhos para sua festa!</p>
+                <span>10 Coxinhas de frango (20 g) - R$5,00</span>
+                <p>10 unidades de deliciosas coxinhas de frango!</p>
                 <div class="quantity-controls">
-                    <button onclick="alterarQuantidade('100 Salgados (20g)', -1)">-</button>
-                    <span id="quantidade-100 Salgados (20g)">0</span>
-                    <button onclick="alterarQuantidade('100 Salgados (20g)', 1)">+</button>
+                    <button onclick="alterarQuantidade('10 Coxinhas de frango (20 g)', -1)">-</button>
+                    <span id="quantidade-10 Coxinhas de frango (20 g)">0</span>
+                    <button onclick="alterarQuantidade('10 Coxinhas de frango (20 g)', 1)">+</button>
                 </div>
             </div>
         </div>
         <div class="menu-item">
-            <img src="salgadinho.jpg" alt="100 Salgados (20g) Congelados">
+            <img src="salgadinho.jpg" alt="10 Bolinhas de queijo (20 g)">
             <div class="info">
-                <span>100 Salgados (20g) Congelados - R$45,00</span>
-                <p>Salgados prontos para congelar e usar quando necessário.</p>
+                <span>10 Bolinhas de queijo (20 g) - R$6,00</span>
+                <p>10 unidades de deliciosas Bolinhas de queijo!</p>
                 <div class="quantity-controls">
-                    <button onclick="alterarQuantidade('100 Salgados (20g) Congelados', -1)">-</button>
-                    <span id="quantidade-100 Salgados (20g) Congelados">0</span>
-                    <button onclick="alterarQuantidade('100 Salgados (20g) Congelados', 1)">+</button>
+                    <button onclick="alterarQuantidade('10 Bolinhas de queijo (20 g)', -1)">-</button>
+                    <span id="quantidade-10 Bolinhas de queijo (20 g)">0</span>
+                    <button onclick="alterarQuantidade('10 Bolinhas de queijo (20 g)', 1)">+</button>
                 </div>
             </div>
         </div>
         <div class="menu-item">
-            <img src="churros.jpg" alt="100 Churros (20g)">
+            <img src="salgadinho.jpg" alt="10 Quibes (20 g)">
             <div class="info">
-                <span>100 Churros (20g) - R$80,00</span>
-                <p>Churros crocantes, com recheio delicioso de doce de leite.</p>
+                <span>10 Quibes (20 g) - R$5,00</span>
+                <p>10 unidades de deliciosos quibes!</p>
                 <div class="quantity-controls">
-                    <button onclick="alterarQuantidade('100 Churros (20g)', -1)">-</button>
-                    <span id="quantidade-100 Churros (20g)">0</span>
-                    <button onclick="alterarQuantidade('100 Churros (20g)', 1)">+</button>
+                    <button onclick="alterarQuantidade('10 Quibes (20 g)', -1)">-</button>
+                    <span id="quantidade-10 Quibes (20 g)">0</span>
+                    <button onclick="alterarQuantidade('10 Quibes (20 g)', 1)">+</button>
                 </div>
             </div>
         </div>
+        <div class="menu-item">
+            <img src="salgadinho.jpg" alt="10 Travesseirinhos de presunto e queijo (20 g)">
+            <div class="info">
+                <span>10 Travesseirinhos de presunto e queijo (20 g) - R$5,50</span>
+                <p>10 unidades de deliciosos travesseirinhos de presunto e queijo!</p>
+                <div class="quantity-controls">
+                    <button onclick="alterarQuantidade('10 Travesseirinhos de presunto e queijo (20 g)', -1)">-</button>
+                    <span id="quantidade-10 Travesseirinhos de presunto e queijo (20 g)">0</span>
+                    <button onclick="alterarQuantidade('10 Travesseirinhos de presunto e queijo (20 g)', 1)">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="salgadinho.jpg" alt="10 Bolinhas de carne (20 g)">
+            <div class="info">
+                <span>10 Bolinhas de carne (20 g) - R$5,00</span>
+                <p>10 unidades de deliciosas bolinhas de carne!</p>
+                <div class="quantity-controls">
+                    <button onclick="alterarQuantidade('10 Bolinhas de carne (20 g)', -1)">-</button>
+                    <span id="quantidade-10 Bolinhas de carne (20 g)">0</span>
+                    <button onclick="alterarQuantidade('10 Bolinhas de carne (20 g)', 1)">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="salgadinho.jpg" alt="10 Salsichas empanadas (20 g)">
+            <div class="info">
+                <span>10 Salsichas empanadas (20 g) - R$4,00</span>
+                <p>10 unidades de deliciosas Salsichas empanadas!</p>
+                <div class="quantity-controls">
+                    <button onclick="alterarQuantidade('10 Salsichas empanadas (20 g)', -1)">-</button>
+                    <span id="quantidade-10 Salsichas empanadas (20 g)">0</span>
+                    <button onclick="alterarQuantidade('10 Salsichas empanadas (20 g)', 1)">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="salgadinho.jpg" alt="10 Croquetes de calabresa/catupiry (20 g)">
+            <div class="info">
+                <span>10 Croquetes de calabresa/catupiry (20 g) - R$5,00</span>
+                <p>10 unidades de deliciosas Croquetes de calabresa com catupiry!</p>
+                <div class="quantity-controls">
+                    <button onclick="alterarQuantidade('10 Croquetes de calabresa/catupiry (20 g)', -1)">-</button>
+                    <span id="quantidade-10 Croquetes de calabresa/catupiry (20 g)">0</span>
+                    <button onclick="alterarQuantidade('10 Croquetes de calabresa/catupiry (20 g)', 1)">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="salgadinho.jpg" alt="10 Churros de doce de leite (20 g)">
+            <div class="info">
+                <span>10 Churros de doce de leite (20 g) - R$10,00</span>
+                <p>10 unidades de deliciosos churros de doce de leite!</p>
+                <div class="quantity-controls">
+                    <button onclick="alterarQuantidade('10 Churros de doce de leite (20 g)', -1)">-</button>
+                    <span id="quantidade-10 Churros de doce de leite (20 g)">0</span>
+                    <button onclick="alterarQuantidade('10 Churros de doce de leite (20 g)', 1)">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="salgadinho.jpg" alt="10 Churros de chocolate (20 g)">
+            <div class="info">
+                <span>10 Churros de chocolate (20 g) - R$12,00</span>
+                <p>10 unidades de deliciosos churros de chocolate!</p>
+                <div class="quantity-controls">
+                    <button onclick="alterarQuantidade('10 Churros de chocolate (20 g)', -1)">-</button>
+                    <span id="quantidade-10 Churros de chocolate (20 g)">0</span>
+                    <button onclick="alterarQuantidade('10 Churros de chocolate (20 g)', 1)">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="titulo">Salgados Grandes</div>
+        <div class="menu-item">
+            <img src="salgadinho.jpg" alt="Coxinha de Frango (100g)">
+            <div class="info">
+                <span>Coxinha de Frango (100g) - R$4,00</span>
+                <p>Uma deliciosa Coxinha de frango de 100g</p>
+                <div class="quantity-controls">
+                    <button onclick="alterarQuantidade('Coxinha de Frango (100g)', -1)">-</button>
+                    <span id="quantidade-Coxinha de Frango (100g)">0</span>
+                    <button onclick="alterarQuantidade('Coxinha de Frango (100g)', 1)">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="salgadinho.jpg" alt="Coxinha de Frango (170g)">
+            <div class="info">
+                <span>Coxinha de Frango (170g) - R$7,00</span>
+                <p>Uma deliciosa Coxinha de frango de 170g</p>
+                <div class="quantity-controls">
+                    <button onclick="alterarQuantidade('Coxinha de Frango (170g)', -1)">-</button>
+                    <span id="quantidade-Coxinha de Frango (170g)">0</span>
+                    <button onclick="alterarQuantidade('Coxinha de Frango (170g)', 1)">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="titulo">Cento</div>
+        <div class="menu-item">
+            <img src="salgadinho.jpg" alt="Cento Montado">
+            <div class="info">
+                <span>Cento Montado - R$50,00</span>
+                <p>Monte seu cento de salgado via whatsapp após finalizar o pedido!</p>
+                <div class="quantity-controls">
+                    <button onclick="alterarQuantidade('Cento Montado', -1)">-</button>
+                    <span id="Cento Montado">0</span>
+                    <button onclick="alterarQuantidade('Cento Montado', 1)">+</button>
+                </div>
+            </div>
+        </div>
+
         <div id="pedido">Pedido: Nenhum item selecionado</div>
         <div id="total">Total: R$0,00</div>
 
@@ -265,9 +386,19 @@
 
         function getPreco(item) {
             switch (item) {
-                case '100 Salgados (20g)': return 50.00;
-                case '100 Salgados (20g) Congelados': return 45.00;
-                case '100 Churros (20g)': return 80.00;
+                case '10 Coxinhas de frango (20 g)': return 5.00;
+                case '10 Bolinhas de queijo (20 g)': return 6.00;
+                case '10 Quibes (20 g)': return 5.00;
+                case '10 Travesseirinhos de presunto e queijo (20 g)': return 5.50;
+                case '10 Bolinhas de carne (20 g)': return 5.00;
+                case '10 Salsichas empanadas (20 g)': return 4.00;
+                case '10 Croquetes de calabresa/catupiry (20 g)': return 5.00;
+                case '10 Churros de doce de leite (20 g)': return 10.00;
+                case '10 Churros de chocolate (20 g)': return 12.00;
+                case 'Coxinha de Frango (100g)': return 4.00;
+                case 'Coxinha de Frango (170g)': return 7.00;
+                case 'Cento Montado': return 50.00;
+
                 default: return 0;
             }
         }
